@@ -9,7 +9,7 @@ router = APIRouter()
 
 @router.post('/register')
 async def create(user: User, db: Session=Depends(get_db) ):
-    user = db.query( model.User).filter( model.User.email== user_credentials.username).first()
+    user = db.query( model.User).filter( model.User.email== user.email).first()
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail= f"{user.email} email does not exists")
 
