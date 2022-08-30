@@ -4,7 +4,9 @@ from typing import Optional
 
 class User(BaseModel):
     email: EmailStr 
-    password: str 
+    password: str
+    class Config:
+        orm_mode = True
 
 class Journal(BaseModel):
     date: str
