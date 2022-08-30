@@ -11,7 +11,7 @@ router = APIRouter()
 async def create(user: User, db: Session=Depends(get_db) ):
     user = db.query( model.User).filter( model.User.email== user_credentials.username).first()
     if not user:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail= f"{user_credentials.username} email does not exists")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail= f"{user.email} email does not exists")
 
     user.password = utils.hash_function(user.password)
     new_user = model.User( **user.dict() )
