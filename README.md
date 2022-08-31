@@ -1,17 +1,14 @@
-## Readme 
-```javascript
-const name = 'Njeru'
-console.log(name)
-```
+# LIQUIFY TRADES
 
-## Readme01
-```javascript
-const name = 'Njeru'
-console.log(name)
-```
+this is repo hosts code for backend development for Liquify Trades, a trading journal which aims at improving trading perfomance
 
-## Readme02
-```javascript
-const name = 'Njeru'
-console.log(name)
-```
+## TECH STACK.
+
+
+
+## DEPLOYMENT
+
+
+## ROUTES DOCUMENTATION
+
+## CONTRIBUTORS
