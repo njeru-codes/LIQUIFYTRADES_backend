@@ -18,21 +18,21 @@ class User(Base):
 class Journal(Base):
     __tablename__ ='journal'
     id = Column(Integer, primary_key=True, nullable=False)
-    date =Column(String, nullable=False)
-    user_id =Column(Integer, nullable=False)
+    date =Column(String, nullable=False)        #TODO: change datatype to date
+    user_id =Column(Integer, nullable=False)    #TODO: change to foreign key
 
 
 class Trade(Base):
     __tablename__ = 'trade'
     id = Column(Integer, primary_key=True, nullable=False)
-    journal_id = Column(Integer, nullable=False)
+    journal_id = Column(Integer, nullable=False)    #TODO: change to foreign key
     symbol=Column(String, nullable=False)
-    open_time = Column(Integer)
-    close_time = Column(Integer )
-    entry_price = Column(Integer )
-    close_price = Column(Integer )
-    stop_loss = Column(Integer )
-    take_profit = Column(Integer )
+    open_time = Column(Integer)     #TODO replace with time datatype
+    close_time = Column(Integer )       #TODO replace with time datatype
+    entry_price = Column(Integer )      #TODO change to float or double
+    close_price = Column(Integer )      #TODO change to float or double
+    stop_loss = Column(Integer )        #TODO change to float or double
+    take_profit = Column(Integer )      #TODO change to float or double
     notes=Column(String)
 
 

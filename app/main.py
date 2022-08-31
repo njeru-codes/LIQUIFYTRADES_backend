@@ -12,8 +12,8 @@ app = FastAPI()
 
 #CORS
 origins = [
-    "https://heroku.app.com",
-    ] #place your domain names here 
+    "https://heroku.app.com",   #TODO insert frontend domains
+    ]    
 
 app.add_middleware(
     CORSMiddleware,

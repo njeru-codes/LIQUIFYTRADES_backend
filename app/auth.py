@@ -4,12 +4,12 @@ from fastapi import HTTPException, Depends,  status
 from fastapi.security import OAuth2PasswordBearer
 from os import environ
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/user/login")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/user/login")     #TODO recheck functionality
 
 
 def create_access_token(data: dict):
     to_encode = data.copy()
-    expire = datetime.utcnow() + timedelta( minutes=90000000 )
+    expire = datetime.utcnow() + timedelta( minutes=90000000 )      #TODO store exp_minutes in env vars
     to_encode.update( {"exp": expire } )
     return jwt.encode(to_encode, environ.get('SECRET_KEY'), algorithm='HS256' )
 

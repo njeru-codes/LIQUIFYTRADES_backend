@@ -11,6 +11,8 @@ class User(BaseModel):
 class Journal(BaseModel):
     date: str
     user_id: Optional[str]=None
+    class Config:
+        orm_mode = True
 
 class Trade(BaseException):
     symbol: str
@@ -22,5 +24,7 @@ class Trade(BaseException):
     take_profit: float
     date: str 
     notes: str
-    journal_id: Optional[str] =None
+    journal_id: Optional[str] =None #TODO revisit
+    class Config:
+        orm_mode = True
     
