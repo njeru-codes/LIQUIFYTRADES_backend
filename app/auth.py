@@ -4,7 +4,7 @@ from fastapi import HTTPException, Depends,  status
 from fastapi.security import OAuth2PasswordBearer
 from os import environ
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/user/login")     #TODO recheck functionality
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")     #TODO recheck functionality
 
 
 def create_access_token(data: dict):
