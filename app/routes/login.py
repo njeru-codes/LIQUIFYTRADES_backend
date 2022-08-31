@@ -9,7 +9,7 @@ router = APIRouter()
 
 
 @router.post('/login')
-async def login(user: User):
+async def login(user: User, db: Session=Depends(get_db)):
     user_db = db.query( model.User).filter( model.User.email== user.email).first()
     if not user_db:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail= f"{user.email} email does not exists")
