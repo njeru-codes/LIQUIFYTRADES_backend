@@ -31,6 +31,7 @@ app.include_router(login.router)
 app.include_router(journal.router)
 app.include_router(trade.router)
 
+
 @app.get('/test')
 async def test():
     return {'msg': 'API is online'}

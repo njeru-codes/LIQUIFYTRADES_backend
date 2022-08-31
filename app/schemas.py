@@ -14,7 +14,7 @@ class Journal(BaseModel):
     class Config:
         orm_mode = True
 
-class Trade(BaseException):
+class Trade(BaseModel):
     symbol: str
     open_time: str 
     close_time: str

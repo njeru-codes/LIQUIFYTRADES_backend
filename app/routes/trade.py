@@ -13,13 +13,13 @@ async def create_trade(trade: Trade):
     return trade
 
 @router.get('/trade/{trade_id}')
-async def get_trade(id: trade_id):
+async def get_trade(trade_id:int ):
     return
 
 @router.put('/trade/{trade_id}')
-async def update_trade(id: trade_id):
+async def update_trade(trade_id:int ):
     return
 
 @router.delete('/trade/{trade_id}')
-async def delete_journal(id:trade_id):
+async def delete_journal(trade_id:int ):
     return
