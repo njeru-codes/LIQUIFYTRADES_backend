@@ -1,5 +1,6 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional
+from datetime import date, time
 
 
 class User(BaseModel):
@@ -9,22 +10,25 @@ class User(BaseModel):
         orm_mode = True
 
 class Journal(BaseModel):
-    date: str
+    date: date
     user_id: Optional[str]=None
     class Config:
         orm_mode = True
 
 class Trade(BaseModel):
     symbol: str
-    open_time: str 
-    close_time: str
+    open_time: time 
+    close_time: time
     open_price: float
     close_price: float
     stop_loss: float
     take_profit: float
-    date: str 
-    notes: str
-    journal_id: Optional[str] =None #TODO revisit
+    date: date 
+    notes: str  #TODO :trim input
+    journal_id: Optional[str] =None 
     class Config:
         orm_mode = True
+
+    
+
     

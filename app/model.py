@@ -1,8 +1,8 @@
 from .database import Base
-from sqlalchemy import Column, Integer,String, Float, Boolean, Table
+from sqlalchemy import Column, Integer,String, Float
 from sqlalchemy.sql.expression import text
 from sqlalchemy.sql.sqltypes import TIMESTAMP
-from sqlalchemy.types import Date,ARRAY
+from sqlalchemy.types import Date, Time
 from sqlalchemy.orm import relationship
 
 
@@ -18,7 +18,7 @@ class User(Base):
 class Journal(Base):
     __tablename__ ='journal'
     id = Column(Integer, primary_key=True, nullable=False)
-    date =Column(String, nullable=False)        #TODO: change datatype to date
+    date =Column(Date, nullable=False)
     user_id =Column(Integer, nullable=False)    #TODO: change to foreign key
 
 
@@ -27,12 +27,12 @@ class Trade(Base):
     id = Column(Integer, primary_key=True, nullable=False)
     journal_id = Column(Integer, nullable=False)    #TODO: change to foreign key
     symbol=Column(String, nullable=False)
-    open_time = Column(Integer)     #TODO replace with time datatype
-    close_time = Column(Integer )       #TODO replace with time datatype
-    entry_price = Column(Integer )      #TODO change to float or double
-    close_price = Column(Integer )      #TODO change to float or double
-    stop_loss = Column(Integer )        #TODO change to float or double
-    take_profit = Column(Integer )      #TODO change to float or double
+    open_time = Column(Time, nullable=False)
+    close_time = Column( Time )     
+    entry_price = Column(Float )
+    close_price = Column(Float )
+    stop_loss = Column(Float )
+    take_profit = Column(Float )      
     notes=Column(String)
 
 
