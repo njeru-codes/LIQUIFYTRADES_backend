@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .routes import register, login
+from .routes import register, login, journal, trade
 from . import model
 from .database import engine
 
@@ -28,6 +28,8 @@ app.add_middleware(
 
 app.include_router(register.router)
 app.include_router(login.router)
+app.include_router(journal.router)
+app.include_router(trade.router)
 
 @app.get('/test')
 async def test():
