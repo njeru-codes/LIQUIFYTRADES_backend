@@ -1,3 +1,9 @@
+![hero](https://user-images.githubusercontent.com/111843624/187912322-acbc1b5b-6748-4c53-a43e-fc03e7f85c13.png)
+
+
+
+
+
 # LIQUIFY TRADES
 
 this is repo hosts code for backend development for Liquify Trades, a trading journal which aims at improving trading perfomance
