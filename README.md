@@ -13,7 +13,7 @@ this is repo hosts code for backend development for Liquify Trades, a trading jo
 The swaggger documentation can be found at https://liquifytrades.herokuapp.com/docs   <br/>
 
 ### Login route
-<details><summary>details</summary>
+
 https://liquifytrades.herokuapp.com/login <br/>
 Login takes email and password , then fetches user_id from the database. It then embeds  user_id in the JWT token which is return.
 To make a request to login route append formdata username which holds email address and also password
@@ -41,11 +41,11 @@ Here is a sample output for successfull login. 200 Status code
 }
 ```
 Incorrect email address or password returns a 403 forbidden status error.
-</details>
+
 
 ### Register Route
-<details><summary>Details</summary>
-https://liquifytrades.herokuapp.com/register
+
+https://liquifytrades.herokuapp.com/register <br/>
 Register route takes POST request with a body containing user email and password then inserts this info in the database . <br/>
 Sample Javascript code
 ```javascript
@@ -83,7 +83,7 @@ Here is schema output for successful registration
     "user_id": 5
 }
 ```
-</details>
+
 
 
  
