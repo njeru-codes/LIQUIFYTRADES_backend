@@ -13,6 +13,7 @@ app = FastAPI()
 #CORS
 origins = [
     "https://heroku.app.com",   #TODO insert frontend domains
+    "http://localhost:3000",
     ]    
 
 app.add_middleware(
