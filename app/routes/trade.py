@@ -6,7 +6,7 @@ router = APIRouter()
 
 
 @router.get('/trade')
-async def get_trades( user_id:int = Depends(get_current_user) ):
+async def get_trades( user_id:int =Depends(get_current_user) ):
     return user_id
 
 @router.post('/trade')
