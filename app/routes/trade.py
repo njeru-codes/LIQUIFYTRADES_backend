@@ -1,12 +1,13 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends, status
 from ..schemas import Trade
+from ..auth import get_current_user
 
 router = APIRouter()
 
 
 @router.get('/trade')
-async def get_trades():
-    return
+async def get_trades( user_id:int = Depends(get_current_user) ):
+    return user_id
 
 @router.post('/trade')
 async def create_trade(trade: Trade):
