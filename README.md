@@ -90,9 +90,61 @@ Here is schema output for successful registration
 }
 ```
 
+### JOURNAL ROUTE
+https://liquifytrades.herokuapp.com/journal
+
+to create a new journal send a POST request with the following schema. Remember to attach the bearer token header in the request
+``` json
+{
+    "date": 2012-23-02
+}
+```
+A 201 status code is returned for a successsfull journal created.
+here is a sample reponse body.
+```json
+{
+    "id":  23,
+    "date": "2012-12-34",
+    "user_id": 34
+}
+```
+A sample request
+``` javascript
+  sample code here
+```
+
+to view all users journal send a GET request to <br/> https://liquifytrades.herokuapp.com/journal.  <br/>
+if the access_token header is validated , all users journals are returned with the following schema. 200 status code
+```json
+{
+  "sample schema here"
+}
+```
+
+to view a single journal details send a GET request to <br/>
+https://liquifytrades.herokuapp.com/journal/journal_id_here <br/>
+sample response
+```json
+{
+  "sample response"
+}
+```
+to delete a Journal send a DELETE request to <br/>
+https://liquifytrades.herokuapp.com/journal/id_here <br/>
+a 200 status code is returned.
+sample response
+```json
+{
+    "sample schema"
+} 
+```
+ sample javascript code
+```javascript 
+    sample code
+```
 
 
- 
+
 
 ## SECURITY
 
