@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from ..schemas import Journal
 from ..auth import get_current_user
 from .. import model
+from fastapi import Depends
 
 
 router = APIRouter()
