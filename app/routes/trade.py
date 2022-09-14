@@ -1,27 +1,38 @@
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends, status, HTTPException
 from ..schemas import Trade
-
+from .. import model
+from sqlalchemy.orm import Session
 from ..auth import get_current_user
 
 router = APIRouter()
 
 
 @router.get('/trade')
-async def get_trades( user_id:int =Depends(get_current_user) ):
-    return user_id
+async def get_trades( db: Session=Depends(get_db), user_id:int =Depends(get_current_user) ):
+    trades = db.query(model.Trade).filter(model.user_id == user_id).all()
+    return trades
 
 @router.post('/trade')
 async def create_trade(trade: Trade,  user_id:int =Depends(get_current_user) ):
-    return trade
+    trade.user_id == user_id
+    new_trade = model.Trade( **trade.dict() )
+    db.add( new_trade)  
+    db.commit()
+    db.refresh(new_trade)
+    return new_trade
+
 
 @router.get('/trade/{trade_id}')
 async def get_trade(trade_id:int, user_id:int =Depends(get_current_user) ):
-    return
+    trade = db.query(model.Trade).filter(model.Trade.user_id == user_id, model.Trade.id = trade_id)
+    if not trade:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=f'trade with id {trade_id} does not exist')
+    return trade
 
 @router.put('/trade/{trade_id}')
 async def update_trade(trade_id:int , user_id:int =Depends(get_current_user)):
-    return
+    return f'trade with id {trade_id} was updated '
 
 @router.delete('/trade/{trade_id}')
 async def delete_journal(trade_id:int , user_id:int =Depends(get_current_user)):
-    return
+    return "deleted a trade"
