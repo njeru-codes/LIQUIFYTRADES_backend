@@ -26,6 +26,7 @@ class Trade(Base):
     __tablename__ = 'trade'
     id = Column(Integer, primary_key=True, nullable=False)
     journal_id = Column(Integer, nullable=False)    #TODO: change to foreign key
+    user_id =Column(Integer, nullable=False)
     symbol=Column(String, nullable=False)
     open_time = Column(Time, nullable=False)
     close_time = Column( Time )     

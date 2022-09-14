@@ -16,6 +16,7 @@ class Journal(BaseModel):
         orm_mode = True
 
 class Trade(BaseModel):
+    user_id: Optional[str] = None
     symbol: str
     open_time: time 
     close_time: time
