@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from .routes import register, login, journal, trade
 from . import model
 from .database import engine
+import uvicorn
 
 
 #creates tables/models in the database
@@ -37,3 +38,5 @@ app.include_router(trade.router)
 async def test():
     return {'msg': 'API is online'}
 
+if __name__ == "__main__":
+  uvicorn.run("server.api:app", host="0.0.0.0", port=5000)
