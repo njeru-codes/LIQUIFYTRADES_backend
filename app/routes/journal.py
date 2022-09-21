@@ -42,5 +42,5 @@ async def delete_journal(journal_id:int, db: Session=Depends(get_db) , user_id:i
     if journal.user_id != user_id:
         raise HTTPException( status_code=status.HTTP_401_UNAUTHORIZED, detail=f"unathorized to access journal with id {journal_id}")
     #TODO delete journal
-    db.delete( model.Journal).filter( model.Journal.id == journal_id)
+    db.delete( journal )
     return {f'journal with id {journal_id} deleted'} 
