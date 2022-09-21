@@ -43,4 +43,5 @@ async def delete_journal(journal_id:int, db: Session=Depends(get_db) , user_id:i
         raise HTTPException( status_code=status.HTTP_401_UNAUTHORIZED, detail=f"unathorized to access journal with id {journal_id}")
     #TODO delete journal
     db.delete( journal )
+    db.refresh(journal)
     return {f'journal with id {journal_id} deleted'} 
