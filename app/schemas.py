@@ -16,7 +16,7 @@ class Journal(BaseModel):
         orm_mode = True
 
 class Trade(BaseModel):
-    user_id: Optional[str] = None
+    user_id: Optional[int] = None
     symbol: str
     open_time: time 
     close_time: time
@@ -26,7 +26,7 @@ class Trade(BaseModel):
     take_profit: float
     #date: date 
     notes: str  #TODO :trim input
-    journal_id: str
+    journal_id: int
     class Config:
         orm_mode = True
 
