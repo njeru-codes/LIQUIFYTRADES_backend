@@ -10,7 +10,7 @@ router = APIRouter()
 
 @router.get('/trade')
 async def get_trades( db: Session=Depends(get_db), user_id:int =Depends(get_current_user) ):
-    trades = db.query(model.Trade).filter(model.user_id == user_id).all()
+    trades = db.query(model.Trade).filter(model.Trade.user_id == user_id).all()
     return trades
 
 @router.post('/trade')
