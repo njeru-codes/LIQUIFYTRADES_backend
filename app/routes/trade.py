@@ -45,5 +45,6 @@ async def delete_journal(trade_id:int , db: Session=Depends(get_db),  user_id:in
     
     #delete trade from DB
     db.delete( trade)
+    db.commit()
     return {f"trade with id {trade_id} deleted"}
 
