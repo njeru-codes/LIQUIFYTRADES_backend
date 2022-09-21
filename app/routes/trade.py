@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, status, HTTPException
 from ..schemas import Trade
+from ..database import get_db
 from .. import model
 from sqlalchemy.orm import Session
 from ..auth import get_current_user
@@ -24,7 +25,7 @@ async def create_trade(trade: Trade, db: Session=Depends(get_db),  user_id:int =
 
 @router.get('/trade/{trade_id}')
 async def get_trade(trade_id:int, db: Session=Depends(get_db), user_id:int =Depends(get_current_user) ):
-    trade = db.query(model.Trade).filter(model.Trade.user_id == user_id, model.Trade.id = trade_id)
+    trade = db.query(model.Trade).filter(model.Trade.user_id == user_id, model.Trade.id == trade_id)
     if not trade:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=f'trade with id {trade_id} does not exist')
     return trade
