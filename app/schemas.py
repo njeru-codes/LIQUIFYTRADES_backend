@@ -24,7 +24,7 @@ class Trade(BaseModel):
     close_price: float
     stop_loss: float
     take_profit: float
-    date: date 
+    #date: date 
     notes: str  #TODO :trim input
     journal_id: str
     class Config:
