@@ -18,5 +18,5 @@ async def login( db: Session=Depends(get_db), user_credentials: OAuth2PasswordRe
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail='wrong password')
     
     access_token = create_access_token( data={"user_id": user.id})
-    return { "access_token": access_token, "token_type": "bearer"}
+    return { "access_token": access_token, "token_type": "bearer" }
     

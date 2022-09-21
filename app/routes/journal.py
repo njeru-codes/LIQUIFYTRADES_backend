@@ -30,10 +30,17 @@ async def create_journal(journal:Journal, db:Session=Depends(get_db) , user_id:i
 async def get_journal(journal_id:int, db: Session=Depends(get_db) , user_id:int =Depends(get_current_user)  ):
     journal = db.query( model.Journal).filter( model.Journal.user_id == user_id, model.Journal.id == journal_id ).first()
     if not journal:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"access to journal with id {journal_id} denied")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, deta  n il=f"access to journal with id {journal_id} denied")
     return journal
 
 
 @router.delete('/{journal_id}')
-async def delete_journal(journal_id: int ):
-    return {'deleted journal'}
+async def delete_journal(journal_id:int, db: Session=Depends(get_db) , user_id:int =Depends(get_current_user)    ):
+    journal = db.query( model.Journal).filter(model.Journal.id == journal_id ).first()
+    if not journal:
+        raise HTTPException( status_code= status.HTTP_404_NOT_FOUND, detail=f"journal with id {journal_id} does not exist")
+    if journal.user_id != user_id:
+        raise HTTPException( status_code=status.HTTP_401_UNAUTHORIZED, detail=f"unathorized to access journal with id {journal_id}")
+    #TODO delete journal
+    db.delete( model.Journal).filter( model.Journal.id == journal_id)
+    return {f'journal with id {journal_id} deleted'} 
