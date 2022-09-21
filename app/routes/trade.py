@@ -44,6 +44,6 @@ async def delete_journal(trade_id:int , db: Session=Depends(get_db),  user_id:in
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=f'trade with id {trade_id} does not exist')
     
     #delete trade from DB
-    db.delete( model.Trade).filter( model.Trade.id == trade_id)
+    db.delete( trade)
     return {f"trade with id {trade_id} deleted"}
 
