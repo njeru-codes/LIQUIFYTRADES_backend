@@ -30,7 +30,7 @@ async def create_journal(journal:Journal, db:Session=Depends(get_db) , user_id:i
 async def get_journal(journal_id:int, db: Session=Depends(get_db) , user_id:int =Depends(get_current_user)  ):
     journal = db.query( model.Journal).filter( model.Journal.user_id == user_id, model.Journal.id == journal_id ).first()
     if not journal:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, deta  n il=f"access to journal with id {journal_id} denied")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"access to journal with id {journal_id} denied")
     return journal
 
 
