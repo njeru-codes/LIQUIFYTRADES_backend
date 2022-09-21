@@ -20,13 +20,13 @@ class Trade(BaseModel):
     symbol: str
     open_time: time 
     close_time: time
-    open_price: float
+    entry_price: float
     close_price: float
     stop_loss: float
     take_profit: float
     date: date 
     notes: str  #TODO :trim input
-    journal_id: Optional[str] =None 
+    journal_id: str
     class Config:
         orm_mode = True
 
