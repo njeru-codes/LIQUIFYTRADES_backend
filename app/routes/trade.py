@@ -36,7 +36,7 @@ async def update_trade(trade_id:int , db: Session=Depends(get_db), user_id:int =
 
 @router.delete('/trade/{trade_id}')
 async def delete_journal(trade_id:int , db: Session=Depends(get_db),  user_id:int =Depends(get_current_user)):
-    trade = db.query(model.Trade).filter(model.Trade.id = trade_id)
+    trade = db.query(model.Trade).filter(model.Trade.id == trade_id)
     if not trade:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=f'trade with id {trade_id} does not exist')
 
@@ -44,6 +44,6 @@ async def delete_journal(trade_id:int , db: Session=Depends(get_db),  user_id:in
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=f'trade with id {trade_id} does not exist')
     
     #delete trade from DB
-    db.delete( model.Trade).filter( model.Trade.id= trade_id)
+    db.delete( model.Trade).filter( model.Trade.id == trade_id)
     return {f"trade with id {trade_id} deleted"}
 
