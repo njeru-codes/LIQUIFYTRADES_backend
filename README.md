@@ -401,6 +401,23 @@ to edit a Trade send a PUT request  to the following endpoint https://liquifytra
    WARNING: THIS ROUTE IS INCOMPLETE
 
 to delete a trade send a DELETE request to the following endpoint https://liquifytrades.herokuapp.com/trade/trade_id
+A successful delete returns a  202 accepted status code with a null response
+Sample javascript code using fetch module
+```javascript
+var myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjcwNjM5MzA3ODd9.uBXXYNGyKVqR1qAnu4fuEI9Embu2SdZHOIAcUMpKJg8");
+
+var requestOptions = {
+  method: 'DELETE',
+  headers: myHeaders,
+  redirect: 'follow'
+};
+
+fetch("https://liquifytrades.herokuapp.com/trade/1", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
 
 
 ## SECURITY
