@@ -100,7 +100,7 @@ https://liquifytrades.herokuapp.com/journal
 to create a new journal send a POST request with the following schema. Remember to attach the bearer token header in the request
 ``` json
 {
-    "date": 2012-23-02
+    "date": "2012-23-02"
 }
 ```
 A 201 status code is returned for a successsfull journal created.
@@ -112,41 +112,138 @@ here is a sample reponse body.
     "user_id": 34
 }
 ```
-A sample request
+A sample request made in javascript
 ``` javascript
-  sample code here
+  var myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjcwNjM5M3ODd9.uBXXYNGyKVqR1qAnu4fuEI9Embu2SdZHOIAcUMpKJg8");
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+  "date": "2012-12-3"
+});
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("https://liquifytrades.herokuapp.com/journal", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
 ```
 
 to view all users journal send a GET request to <br/> https://liquifytrades.herokuapp.com/journal.  <br/>
 if the access_token header is validated , all users journals are returned with the following schema. 200 status code
 ```json
-{
-  "sample schema here"
-}
+[
+    {
+        "date": "sample date",
+        "user_id": 1,
+        "id": 1
+    },
+]
 ```
 
 to view a single journal details send a GET request to <br/>
 https://liquifytrades.herokuapp.com/journal/journal_id_here <br/>
 sample response
 ```json
-{
-  "sample response"
-}
+[
+    {
+        "date": "2022-09-21",
+        "user_id": 1,
+        "id": 1
+    },
+    {
+        "date": "2022-09-21",
+        "user_id": 1,
+        "id": 3
+    },
+    {
+        "date": "2012-12-03",
+        "user_id": 1,
+        "id": 6
+    }
+]
 ```
-to delete a Journal send a DELETE request to <br/>
-https://liquifytrades.herokuapp.com/journal/id_here <br/>
-a 200 status code is returned.
-sample response
-```json
-{
-    "sample schema"
-} 
+here is a sample request to get all journals written in javascript fetch module
+```javascript
+var myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjcwNjM5MzA3ODd9.uBXXYNGyKVqR1qAnu4fuEI9Embu2SdZHOIAcUMpKJg8");
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  redirect: 'follow'
+};
+
+fetch("https://liquifytrades.herokuapp.com/journal", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
 ```
- sample javascript code
+to delete a Journal send a DELETE request to  
+https://liquifytrades.herokuapp.com/journal/id_here  
+a 202 status code is returned with a null  response <br/>
+ sample javascript code to delete a journal using javascript fetch module
 ```javascript 
-    sample code
+var myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjcwNjM5MzA3ODd9.uBXXYNGyKVqR1qAnu4fuEI9Embu2SdZHOIAcUMpKJg8");
+
+var requestOptions = {
+  method: 'DELETE',
+  headers: myHeaders,
+  redirect: 'follow'
+};
+
+fetch("https://liquifytrades.herokuapp.com/journal/6", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
 ```
 
+to get details of a single journal make a GET request to the endpoint https://liquifytrades.herokuapp.com/journal/id_here.
+Here is a sample response of a successful request
+```json
+{
+    "date": "2022-09-21",
+    "id": 3,
+    "trades": [
+        {
+            "journal_id": 3,
+            "user_id": 1,
+            "open_time": "12:34:00",
+            "entry_price": 1.91155,
+            "stop_loss": 1.9115,
+            "notes": "EURUSD was bullish today, so took a counter trade",
+            "id": 2,
+            "symbol": "EURUSD",
+            "close_time": "13:32:00",
+            "close_price": 1.91134,
+            "take_profit": 2.6758
+        }
+    ]
+}
+```
+A sample javascript code for getting details of a single journal
+```javascript
+var myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjcwNjM5MzA3ODd9.uBXXYNGyKVqR1qAnu4fuEI9Embu2SdZHOIAcUMpKJg8");
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  redirect: 'follow'
+};
+
+fetch("https://liquifytrades.herokuapp.com/journal/3", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
 
 
 
