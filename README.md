@@ -303,8 +303,8 @@ Here is sample schema of the body to attach to the request
 {
   "user_id": 0,
   "symbol": "string",
-  "open_time": "string",
-  "close_time": "string",
+  "open_time": "12:34",
+  "close_time": "23:34",
   "entry_price": 0,
   "close_price": 0,
   "stop_loss": 0,
@@ -314,8 +314,93 @@ Here is sample schema of the body to attach to the request
 }
 ```
 
-A successful request returns a 
+A successful request returns a 202 status code with the following response body
+```json
+{
+  "id": 3,
+  "symbol": "string",
+  "close_time": "23:34:00",
+  "close_price": 0,
+  "take_profit": 0,
+  "journal_id": 0,
+  "user_id": 0,
+  "open_time": "19:12:00",
+  "entry_price": 0,
+  "stop_loss": 0,
+  "notes": "string"
+}
+```
+Here is sample javascript code for creating a trade
+```javascript
+var myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjcwNjM5MzA3ODd9.uBXXYNGyKVqR1qAnu4fuEI9Embu2SdZHOIAcUMpKJg8");
+myHeaders.append("Content-Type", "application/json");
 
+var raw = JSON.stringify({
+  "user_id": 0,
+  "symbol": "string",
+  "open_time": "19:12",
+  "close_time": "23:34",
+  "entry_price": 0,
+  "close_price": 0,
+  "stop_loss": 0,
+  "take_profit": 0,
+  "notes": "string",
+  "journal_id": 0
+});
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("https://liquifytrades.herokuapp.com/trade", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+
+to get details of a single trade send a GET request to 
+https://liquifytrades.herokuapp.com/trade/id_here 
+Here is a sample response of successful request
+
+```json
+{
+    "id": 1,
+    "symbol": "EURUSD",
+    "close_time": "13:32:00",
+    "close_price": 1.91134,
+    "take_profit": 2.6758,
+    "journal_id": 2,
+    "user_id": 1,
+    "open_time": "12:34:00",
+    "entry_price": 1.91155,
+    "stop_loss": 1.9115,
+    "notes": "EURUSD was bullish today, so took a counter trade"
+}
+```
+```javascript
+var myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjcwNjM5MzA3ODd9.uBXXYNGyKVqR1qAnu4fuEI9Embu2SdZHOIAcUMpKJg8");
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  redirect: 'follow'
+};
+
+fetch("https://liquifytrades.herokuapp.com/trade/1", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+
+to edit a Trade send a PUT request  to the following endpoint https://liquifytrades.herokuapp.com/trade with the following body
+   WARNING: THIS ROUTE IS INCOMPLETE
+
+to delete a trade send a DELETE request to the following endpoint https://liquifytrades.herokuapp.com/trade/trade_id
 
 
 ## SECURITY
