@@ -35,7 +35,7 @@ async def get_journal(journal_id:int, db: Session=Depends(get_db) , user_id:int 
     return  { "date": journal.date, "id": journal.id , "trades": trades}
 
 
-@router.delete('/{journal_id}')
+@router.delete('/journal/{journal_id}',  status_code=202)
 async def delete_journal(journal_id:int, db: Session=Depends(get_db) , user_id:int =Depends(get_current_user)    ):
     journal = db.query( model.Journal).filter(model.Journal.id == journal_id ).first()
     if not journal:
