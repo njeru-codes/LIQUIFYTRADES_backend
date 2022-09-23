@@ -13,7 +13,7 @@ async def get_trades( db: Session=Depends(get_db), user_id:int =Depends(get_curr
     trades = db.query(model.Trade).filter(model.Trade.user_id == user_id).all()
     return trades
 
-@router.post('/trade')
+@router.post('/trade', status_code=202)
 async def create_trade(trade: Trade, db: Session=Depends(get_db),  user_id:int =Depends(get_current_user) ):
     trade.user_id == user_id
     new_trade = model.Trade( **trade.dict() )
