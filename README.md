@@ -22,7 +22,7 @@ this is repo hosts code for backend development for Liquify Trades, a trading jo
 ## ROUTES DOCUMENTATION
 The swaggger documentation can be found at https://liquifytrades.herokuapp.com/docs   <br/>
 
-### Login route
+### LOGIN ROUTE
 
 https://liquifytrades.herokuapp.com/login <br/>
 Login takes email and password , then fetches user_id from the database. It then embeds  user_id in the JWT token which is return.
@@ -53,7 +53,7 @@ Here is a sample output for successfull login. 200 Status code
 Incorrect email address or password returns a 403 forbidden status error.
 
 
-### Register Route
+### REGISTER ROUTE
 
 https://liquifytrades.herokuapp.com/register <br/>
 Register route takes POST request with a body containing user email and password then inserts this info in the database . <br/>
@@ -244,6 +244,77 @@ fetch("https://liquifytrades.herokuapp.com/journal/3", requestOptions)
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
 ```
+
+  ### TRADE ROUTE
+to get all trades of a logged in user, send a GET request to the endpoint 
+https://liquifytrades.herokuapp.com/trade  
+ Here is a sample response of successfull request with 200 status code
+```json
+[
+    {
+        "open_time": "12:34:00",
+        "user_id": 1,
+        "journal_id": 2,
+        "entry_price": 1.91155,
+        "stop_loss": 1.9115,
+        "notes": "EURUSD was bullish today, so took a counter trade",
+        "id": 1,
+        "symbol": "EURUSD",
+        "close_time": "13:32:00",
+        "close_price": 1.91134,
+        "take_profit": 2.6758
+    },
+    {
+        "open_time": "12:34:00",
+        "user_id": 1,
+        "journal_id": 3,
+        "entry_price": 1.91155,
+        "stop_loss": 1.9115,
+        "notes": "EURUSD was bullish today, so took a counter trade",
+        "id": 2,
+        "symbol": "EURUSD",
+        "close_time": "13:32:00",
+        "close_price": 1.91134,
+        "take_profit": 2.6758
+    }
+]
+```
+Here is sample request made with javascript fetch module
+```javascript
+var myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjcwNjM5MzA3ODd9.uBXXYNGyKVqR1qAnu4fuEI9Embu2SdZHOIAcUMpKJg8");
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  redirect: 'follow'
+};
+
+fetch("https://liquifytrades.herokuapp.com/trade", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+
+to create a trade make  a POST request to the endpoint 
+https://liquifytrades.herokuapp.com/trade with  the following body schema  <br/>
+Here is sample schema of the body to attach to the request
+```json
+{
+  "user_id": 0,
+  "symbol": "string",
+  "open_time": "string",
+  "close_time": "string",
+  "entry_price": 0,
+  "close_price": 0,
+  "stop_loss": 0,
+  "take_profit": 0,
+  "notes": "string",
+  "journal_id": 0
+}
+```
+
+A successful request returns a 
 
 
 
