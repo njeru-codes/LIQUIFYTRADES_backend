@@ -9,7 +9,11 @@
 this is repo hosts code for backend development for Liquify Trades, a trading journal which aims at improving trading perfomance
 
 ## TECH STACK.
-https://img.shields.io/static/v1?label=&message=HEROKU&color=<COLOR>
+![](https://img.shields.io/static/v1?label=&message=HEROKU&color=<COLOR>)
+![](https://img.shields.io/static/v1?label=&message=Postgres&color=red)
+![](https://img.shields.io/static/v1?label=&message=JWT_TOKENS&color=red)
+![](https://img.shields.io/static/v1?label=python&message=v3.1&color=red)
+![](https://img.shields.io/static/v1?label=fastapi&message=v0.81.0&color=)
 
 
 ## DEPLOYMENT
