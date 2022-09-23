@@ -54,7 +54,7 @@ Incorrect email address or password returns a 403 forbidden status error.
 https://liquifytrades.herokuapp.com/register <br/>
 Register route takes POST request with a body containing user email and password then inserts this info in the database . <br/>
 Sample Javascript code
-```javascript
+```javascript 
 var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 
